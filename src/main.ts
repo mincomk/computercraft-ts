@@ -1,0 +1,1 @@
+term.write("Hello, world!");
