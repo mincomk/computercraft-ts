@@ -1,1 +1,0 @@
-local a={}local b={}local c=require;local function require(d,...)if b[d]then return b[d].value end;if a[d]then local e=a[d]local g=nil;if select("#",...)>0 then g=e(...)else g=e(d)end;b[d]={value=g}return g else if c then return c(d)else error("module '"..d.."' not found")end end end;a={["src.main"]=function(...)f=fs.open("a","r")f:read()end}return require("src.main",...)
