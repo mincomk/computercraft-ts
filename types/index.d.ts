@@ -1117,6 +1117,12 @@ declare global {
    */
   namespace redstone {
     /**
+     * Returns a table containing the six sides of the computer. Namely, "top", "bottom", "left", "right", "front" and "back".
+     * @returns A table of valid sides.
+     */
+    function getSides(): string[];
+
+    /**
      * Gets the current redstone output on a specific side.
      * @param side The side to get
      * @returns If redstone is being output on this side
