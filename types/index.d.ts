@@ -1,9 +1,11 @@
+/** @noSelfInFile */
+
 /**
  * TypeScript declarations for CC: Tweaked Lua API
  * Based on documentation from https://tweaked.cc/
  */
 
-export {};
+export { };
 
 /** @noSelf **/
 declare global {
@@ -421,11 +423,13 @@ declare global {
    */
   interface FileHandle {
     /**
+     * @noSelf
      * Closes an open file.
      */
     close(): void;
 
     /**
+     * @noSelf
      * Reads data from an open file.
      * @param count The number of bytes or characters to read
      * @returns The read data
@@ -433,35 +437,41 @@ declare global {
     read(count?: number): string | number[] | null;
 
     /**
+     * @noSelf
      * Reads a line from an open file.
      * @returns The read line
      */
     readLine(): string | null;
 
     /**
+     * @noSelf
      * Reads all remaining contents from an open file.
      * @returns The file contents
      */
     readAll(): string | null;
 
     /**
+     * @noSelf
      * Writes data to an open file.
      * @param data The data to write
      */
     write(data: string | number[]): void;
 
     /**
+     * @noSelf
      * Writes a line to an open file.
      * @param data The line to write
      */
     writeLine(data: string): void;
 
     /**
+     * @noSelf
      * Flushes any buffered data to the file.
      */
     flush(): void;
 
     /**
+     * @noSelf
      * Seeks to a new position in the file.
      * @param whence Where to seek from
      * @param offset The offset to seek to

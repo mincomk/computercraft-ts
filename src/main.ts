@@ -1,3 +1,2 @@
-const d = http.get("https://google.com");
-
-print(d);
+const f = fs.open("a", "r");
+f.read();
