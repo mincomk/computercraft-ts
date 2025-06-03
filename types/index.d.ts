@@ -1102,7 +1102,10 @@ declare global {
      * @param peripheralType The type to search for
      * @returns The names of found peripherals and the wrapped peripherals
      */
-    function find(peripheralType: string): [string, any][];
+    function find(
+      peripheralType: string,
+      filter?: (name: string, wrapped: any) => boolean,
+    ): [string, any][];
 
     /**
      * Gets the names of all attached peripherals.
