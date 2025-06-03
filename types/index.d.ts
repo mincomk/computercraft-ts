@@ -3,19 +3,13 @@
  * Based on documentation from https://tweaked.cc/
  */
 
-export { };
+export {};
 
 /** @noSelf **/
 declare global {
   /**
    * Global Environment (_G)
    */
-
-  /**
-   * Pauses execution for the specified number of seconds.
-   * @param time The number of seconds to sleep for, rounded up to the nearest multiple of 0.05.
-   */
-  export function sleep(time: number): void;
 
   /**
    * Writes a line of text to the screen without a newline at the end, wrapping text if necessary.
@@ -1239,6 +1233,12 @@ declare global {
      * @returns The current time
      */
     function time(locale?: string): number;
+
+    /**
+     * Pauses execution for the specified number of seconds.
+     * @param time The number of seconds to sleep for, rounded up to the nearest multiple of 0.05.
+     */
+    export function sleep(time: number): void;
 
     /**
      * Returns the day depending on the string passed in.
