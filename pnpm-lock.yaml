@@ -11,6 +11,9 @@ importers:
       '@eslint/js':
         specifier: ^9.27.0
         version: 9.28.0
+      '@typescript-to-lua/language-extensions':
+        specifier: ^1.19.0
+        version: 1.19.0
       eslint:
         specifier: ^9.27.0
         version: 9.28.0

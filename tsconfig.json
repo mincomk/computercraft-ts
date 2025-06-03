@@ -7,7 +7,7 @@
     "strict": true,
     "plugins": [{ "name": "typescript-tstl-plugin" }],
     "outDir": "dist",
-    "types": ["./types/index"],
+    "types": ["./types/index", "@typescript-to-lua/language-extensions"],
     "noImplicitAny": false
   },
   "tstl": {
