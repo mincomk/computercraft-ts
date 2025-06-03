@@ -1104,7 +1104,7 @@ declare global {
      */
     function find(
       peripheralType: string,
-      filter?: (name: string, wrapped?: any) => boolean,
+      filter?: (name: string, wrapped?: any) => boolean | void,
     ): [string, any][];
 
     /**
