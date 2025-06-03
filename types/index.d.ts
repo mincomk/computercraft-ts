@@ -277,6 +277,7 @@ declare global {
    * File System API
    * Interact with the computer's files and filesystem, allowing you to manipulate files, directories and paths.
    */
+  /** @noSelf **/
   namespace fs {
     /**
      * Returns a list of all the files (including subdirectories but not their contents) contained in a directory.
