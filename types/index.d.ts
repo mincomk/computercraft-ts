@@ -183,7 +183,7 @@ declare global {
     const CHANNEL_REPEAT = 65533;
     const MAX_ID_CHANNEL = 65500;
 
-    type RednetData = number | boolean | string | Object;
+    type RednetData = number | boolean | string | any;
 
     /**
      * Opens a modem with the given peripheral name, allowing it to send and receive messages over rednet.
