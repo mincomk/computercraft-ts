@@ -241,7 +241,7 @@ declare global {
     function receive(
       protocolFilter?: string,
       timeout?: number,
-    ): LuaMultiReturn<[number, RednetData, string | null]> | null;
+    ): LuaMultiReturn<[number, RednetData, string | null]>;
 
     /**
      * Register the system as "hosting" the desired protocol under the specified name. If a rednet lookup is performed for that protocol (and maybe name) on the same network, the registered system will automatically respond via a background process, hence providing the system performing the lookup with its ID number.
