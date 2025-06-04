@@ -5,7 +5,7 @@
  * Based on documentation from https://tweaked.cc/
  */
 
-export {};
+export { };
 
 /** @noSelf **/
 declare global {
@@ -63,6 +63,14 @@ declare global {
    * This is a comma-separated list of settings pairs defined by the mod configuration or server owner.
    */
   export const _CC_DEFAULT_SETTINGS: string;
+
+  /**
+   * A simple way to run several functions at once.
+   */
+  namespace parallel {
+    function waitForAny(...functions: ((...args: any) => any)[]): void;
+    function waitForAll(...functions: ((...args: any) => any)[]): void;
+  }
 
   /**
    * Colors API

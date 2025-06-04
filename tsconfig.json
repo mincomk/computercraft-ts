@@ -8,7 +8,7 @@
     "plugins": [{ "name": "typescript-tstl-plugin" }],
     "outDir": "dist",
     "types": ["./types/index", "@typescript-to-lua/language-extensions"],
-    "noImplicitAny": false
+    "noImplicitAny": true
   },
   "tstl": {
     "luaTarget": "5.4",
