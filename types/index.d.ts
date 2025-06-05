@@ -121,7 +121,10 @@ declare global {
      * @returns The line iterator.
      */
 
-    function lines(filename?: string, ...args: any[]): () => string | null;
+    function lines(
+      filename?: string,
+      ...args: any[]
+    ): LuaIterable<string | null>;
 
     /**
      * Open a file with the given mode, either returning a new file handle or nil, plus an error message.
