@@ -72,6 +72,94 @@ declare global {
   export const _CC_DEFAULT_SETTINGS: string;
 
   /**
+   * Emulates Lua's standard io library.
+   */
+  namespace io {
+    const stdin: FileHandle;
+    const stdout: FileHandle;
+    const stderr: FileHandle;
+
+    type ReadMode =
+      | "r"
+      | "w"
+      | "a"
+      | "r+"
+      | "w+"
+      | "rb"
+      | "wb"
+      | "ab"
+      | "rb+"
+      | "wb+";
+
+    /**
+     * Closes the provided file handle.
+     *
+     * @param file Handle The file handle to close, defaults to the current output file.
+     */
+    function close(file?: FileHandle): void;
+
+    /**
+     * Flushes the current output file.
+     */
+    function flush(): void;
+
+    /**
+     * Get or set the current input file.
+     * @param file The new input file, either as a file path or pre-existing handle.
+     * @returns The current input file.
+     */
+    function input(file?: FileHandle | string): FileHandle;
+
+    /**
+     * Opens the given file name in read mode and returns an iterator that, each time it is called, returns a new line from the file.
+     * This can be used in a for loop to iterate over all lines of a file
+     * Once the end of the file has been reached, nil will be returned. The file is automatically closed.
+     * If no file name is given, the current input will be used instead. In this case, the handle is not used.
+     *
+     * @param filename The name of the file to extract lines from
+     * @param ...  The argument to pass to Handle:read for each line.
+     * @returns The line iterator.
+     */
+
+    function lines(filename?: string, ...args: any[]): () => string | null;
+
+    /**
+     * Open a file with the given mode, either returning a new file handle or nil, plus an error message.
+     * @param filename The name of the file to open.
+     * @param mode The mode to open the file with. This defaults to r.
+     */
+    function open(filename: string, mode?: ReadMode): FileHandle;
+
+    /**
+     * Get or set the current output file.
+     * @param file The new output file, either as a file path or pre-existing handle.
+     * @returns The current output file.
+     */
+    function output(file?: FileHandle | string): FileHandle;
+
+    /**
+     * Read from the currently opened input file.
+     * This is equivalent to io.input():read(...). See the documentation there for full details.
+     * @param ... The formats to read, defaulting to a whole line.
+     * @returns The data read, or nil if nothing can be read.
+     */
+    function read(...fmt: string[]): LuaMultiReturn<(string | null)[]>;
+
+    /**
+     * Checks whether handle is a given file handle, and determine if it is open or not.
+     * @param obj The value to check
+     * @returns "file" if this is an open file, "closed file" if it is a closed file handle, or nil if not a file handle.
+     */
+    function type(obj: any): string | null;
+
+    /**
+     * Write to the currently opened output file.
+     * @param str The strings to write
+     */
+    function write(...str: string[]): void;
+  }
+
+  /**
    * A simple way to run several functions at once.
    */
   namespace parallel {
