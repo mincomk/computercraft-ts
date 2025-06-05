@@ -5,7 +5,7 @@
  * Based on documentation from https://tweaked.cc/
  */
 
-export { };
+export {};
 
 /** @noSelf **/
 declare global {
@@ -34,6 +34,13 @@ declare global {
    * @param args The values to print on the screen
    */
   export function printError(...args: any[]): void;
+
+  /**
+   * Loads a lua module.
+   * @param name Name of the lua module
+   * @returns The module
+   */
+  export function require(name: string): any;
 
   /**
    * Reads user input from the terminal. This automatically handles arrow keys, pasting,
