@@ -5,7 +5,7 @@
  * Based on documentation from https://tweaked.cc/
  */
 
-export {};
+export { };
 
 /** @noSelf **/
 declare global {
@@ -70,6 +70,196 @@ declare global {
    * This is a comma-separated list of settings pairs defined by the mod configuration or server owner.
    */
   export const _CC_DEFAULT_SETTINGS: string;
+
+  namespace textutils {
+    /** Special constant to represent an empty JSON array in serialisation. */
+    const empty_json_array: any;
+
+    /** Special constant to represent a JSON null value. */
+    const json_null: any;
+
+    /** Write text slowly, character by character. */
+    function slowWrite(text: string, rate?: number): void;
+
+    /** Print text slowly, character by character, with a newline at the end. */
+    function slowPrint(text: string, rate?: number): void;
+
+    /** Format time as a human-readable string, e.g. "6:30 PM" or "18:30". */
+    function formatTime(time: number, twentyFourHour?: boolean): string;
+
+    /**
+     * Print text with paging: pauses when the screen is full.
+     * @returns Number of lines printed
+     */
+    function pagedPrint(text: string, freeLines?: number): number;
+
+    /**
+     * Tabulate rows and print to the screen.
+     * @example textutils.tabulate({ "1", "2", "3" }, { "A", "B", "C" });
+     */
+    function tabulate(...rows: (string[] | number)[]): void;
+
+    /**
+     * Tabulate rows and print with paging when screen fills.
+     */
+    function pagedTabulate(...rows: (string[] | number)[]): void;
+
+    /** Convert a Lua value into a serialised string representation. */
+    function serialise(
+      value: any,
+      opts?: {
+        compact?: boolean;
+        allow_repetitions?: boolean;
+      },
+    ): string;
+
+    /** Alias for `serialise`. */
+    const serialize: typeof serialise;
+
+    /**
+     * Unserialise a value from a string representation.
+     * @returns The deserialised value, or `null` on error.
+     */
+    function unserialise(s: string): any | null;
+
+    /** Alias for `unserialise`. */
+    const unserialize: typeof unserialise;
+
+    /**
+     * Serialise to a JSON string.
+     * @param value The value to serialise.
+     * @param options Serialisation options.
+     */
+    function serialiseJSON(
+      value: any,
+      options?:
+        | boolean
+        | {
+          nbt_style?: boolean;
+          unicode_strings?: boolean;
+          allow_repetitions?: boolean;
+        },
+    ): string;
+
+    /** Alias for `serialiseJSON`. */
+    const serializeJSON: typeof serialiseJSON;
+
+    /** Alias for `unserialiseJSON`. */
+    const unserializeJSON: typeof unserialiseJSON;
+
+    /**
+     * Unserialise a JSON string.
+     * @returns The deserialised value, or `null` on error.
+     */
+    function unserialiseJSON(
+      s: string,
+      options?: {
+        nbt_style?: boolean;
+        parse_null?: boolean;
+        parse_empty_array?: boolean;
+      },
+    ): any | null;
+
+    /**
+     * Encode a string for use in URLs or POST data.
+     */
+    function urlEncode(str: string): string;
+
+    /**
+     * Complete a Lua expression for use in auto-completion (e.g. shell).
+     * @returns Array of possible completions.
+     */
+    function complete(
+      searchText: string,
+      searchTable?: Record<string, any>,
+    ): string[];
+  }
+
+  /**
+   * Read and write configuration options for CraftOS and your programs.
+   */
+  namespace settings {
+    type SettingType = "number" | "string" | "boolean" | "table";
+
+    interface SettingOptions {
+      description?: string;
+      default?: any;
+      type?: SettingType;
+    }
+
+    interface SettingDetails {
+      description?: string;
+      default?: any;
+      type?: SettingType;
+      value?: any;
+      changed?: boolean;
+    }
+
+    /**
+     * Define a new setting.
+     * @param name The name of this option
+     * @param options Optional metadata and defaults for this setting
+     */
+    function define(name: string, options?: SettingOptions): void;
+
+    /**
+     * Remove a defined setting (does not unset value).
+     * @param name The name of the option to remove
+     */
+    function undefine(name: string): void;
+
+    /**
+     * Set the value of a setting.
+     * @param name The name of the setting
+     * @param value The value to assign (must be serialisable and of correct type)
+     */
+    function set(name: string, value: any): void;
+
+    /**
+     * Get the value of a setting.
+     * @param name The name of the setting
+     * @param defaultValue A fallback if value is not set
+     */
+    function get(name: string, defaultValue?: any): any;
+
+    /**
+     * Get the metadata and value of a setting.
+     * @param name The name of the setting
+     * @returns Detailed information about the setting
+     */
+    function getDetails(name: string): SettingDetails;
+
+    /**
+     * Unset a setting (reverts to default).
+     * @param name The name of the setting to unset
+     */
+    function unset(name: string): void;
+
+    /**
+     * Clear all set values (reset to defaults).
+     */
+    function clear(): void;
+
+    /**
+     * Get a list of all setting names.
+     * @returns Array of setting names
+     */
+    function getNames(): string[];
+
+    /**
+     * Load settings from a file.
+     * @param path Path to the file (defaults to ".settings")
+     * @returns Whether loading was successful
+     */
+    function load(path?: string): boolean;
+
+    /**
+     * Save settings to a file.
+     * @param path Path to the file (defaults to ".settings")
+     * @returns Whether saving was successful
+     */
+    function save(path?: string): boolean;
+  }
 
   /**
    * Emulates Lua's standard io library.
