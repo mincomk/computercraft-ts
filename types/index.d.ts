@@ -5,7 +5,7 @@
  * Based on documentation from https://tweaked.cc/
  */
 
-export { };
+export {};
 
 /** @noSelf **/
 declare global {
@@ -71,6 +71,42 @@ declare global {
    */
   export const _CC_DEFAULT_SETTINGS: string;
 
+  namespace math {
+    const huge: number;
+    const pi: number;
+
+    function abs(x: number): number;
+    function acos(x: number): number;
+    function asin(x: number): number;
+    function atan(x: number): number;
+    function atan2(y: number, x: number): number;
+    function ceil(x: number): number;
+    function cos(x: number): number;
+    function cosh(x: number): number;
+    function deg(x: number): number;
+    function exp(x: number): number;
+    function floor(x: number): number;
+    function fmod(x: number, y: number): number;
+    function frexp(x: number): [number, number];
+    function ldexp(m: number, e: number): number;
+    function log(x: number): number;
+    function log10(x: number): number;
+    function max(...values: number[]): number;
+    function min(...values: number[]): number;
+    function modf(x: number): [number, number];
+    function pow(x: number, y: number): number;
+    function rad(x: number): number;
+    function random(): number;
+    function random(m: number): number;
+    function random(m: number, n: number): number;
+    function randomseed(x: number): void;
+    function sin(x: number): number;
+    function sinh(x: number): number;
+    function sqrt(x: number): number;
+    function tan(x: number): number;
+    function tanh(x: number): number;
+  }
+
   namespace textutils {
     /** Special constant to represent an empty JSON array in serialisation. */
     const empty_json_array: any;
@@ -135,10 +171,10 @@ declare global {
       options?:
         | boolean
         | {
-          nbt_style?: boolean;
-          unicode_strings?: boolean;
-          allow_repetitions?: boolean;
-        },
+            nbt_style?: boolean;
+            unicode_strings?: boolean;
+            allow_repetitions?: boolean;
+          },
     ): string;
 
     /** Alias for `serialiseJSON`. */
