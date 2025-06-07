@@ -71,6 +71,7 @@ declare global {
    */
   export const _CC_DEFAULT_SETTINGS: string;
 
+  /* @customName math */
   namespace math {
     const huge: number;
     const pi: number;
